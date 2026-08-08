@@ -16,23 +16,37 @@
 <body>
 
 <div id="sidebar">
-    <div class="channel-btn" tabindex="1" onclick="playChannel('UC2e2h1mN9jDkMvhO4fO6N5w')">Somoy News</div>
-    <div class="channel-btn" tabindex="2" onclick="playChannel('UC41G0iM40pE8n5AAt4uIidA')">Jamuna TV</div>
-    <div class="channel-btn" tabindex="3" onclick="playChannel('UC4g_-WkS9PxgO-H-_bA7QkQ')">Independent TV</div>
-    <div class="channel-btn" tabindex="4" onclick="playChannel('UCk_B1C9vP-Q-s5Ue8x0n41g')">Ekattor TV</div>
-    <div class="channel-btn" tabindex="5" onclick="playChannel('UC3f7a1X0OaQ-3c4L804uNqg')">Channel 24</div>
+    <div class="channel-btn" tabindex="1" onclick="playChannel('somoynews')">Somoy News</div>
+    <div class="channel-btn" tabindex="2" onclick="playChannel('JamunaTV-BD')">Jamuna TV</div>
+    <div class="channel-btn" tabindex="3" onclick="playChannel('IndependentNewsBD')">Independent TV</div>
+    <div class="channel-btn" tabindex="4" onclick="playChannel('ekattortv')">Ekattor TV</div>
+    <div class="channel-btn" tabindex="5" onclick="playChannel('Channel24Youtube')">Channel 24</div>
 </div>
 
 <div id="player-container">
-    <iframe id="yt-player" src="" allow="autoplay; encrypted-media"></iframe>
+    <iframe id="yt-player" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 <script>
-    function playChannel(channelId) {
-        var url = "https://www.youtube.com/embed/live_stream?channel=" + channelId + "&autoplay=1";
+    function playChannel(handle) {
+        // ইউটিউবের আপডেট করা নো-কুকি এমবেড ইউআরএল
+        var url = "https://www.youtube-nocookie.com/embed/live_stream?channel=" + getChannelId(handle) + "&autoplay=1";
         document.getElementById('yt-player').src = url;
     }
-    window.onload = function() { playChannel('UC2e2h1mN9jDkMvhO4fO6N5w'); };
+
+    // হ্যান্ডেল থেকে আইডি ম্যাপিং
+    function getChannelId(handle) {
+        var channels = {
+            'somoynews': 'UC2e2h1mN9jDkMvhO4fO6N5w',
+            'JamunaTV-BD': 'UC41G0iM40pE8n5AAt4uIidA',
+            'IndependentNewsBD': 'UC4g_-WkS9PxgO-H-_bA7QkQ',
+            'ekattortv': 'UCk_B1C9vP-Q-s5Ue8x0n41g',
+            'Channel24Youtube': 'UC3f7a1X0OaQ-3c4L804uNqg'
+        };
+        return channels[handle];
+    }
+
+    window.onload = function() { playChannel('somoynews'); };
 </script>
 </body>
 </html>
