@@ -29,9 +29,9 @@
 
 <script>
     function playChannel(handle) {
-        // ইউটিউবের আপডেট করা নো-কুকি এমবেড ইউআরএল
-        var url = "https://www.youtube-nocookie.com/embed/live_stream?channel=" + getChannelId(handle) + "&autoplay=1";
-        document.getElementById('yt-player').src = url;
+    // সরাসরি ইউটিউব অ্যাপে ওই চ্যানেলের লাইভ ফিড ওপেন করবে
+    window.location.href = "https://www.youtube.com/@" + handle + "/live";
+}
     }
 
     // হ্যান্ডেল থেকে আইডি ম্যাপিং
